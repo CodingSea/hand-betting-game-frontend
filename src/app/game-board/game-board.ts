@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -7,6 +7,14 @@ import { RouterLink } from '@angular/router';
   templateUrl: './game-board.html',
   styleUrl: './game-board.css',
 })
-export class GameBoard {
+export class GameBoard implements OnInit
+{
+  username: string = "";
+
+  ngOnInit(): void
+  {
+    this.username = sessionStorage.getItem("username")!;
+    console.log(this.username);
+  }
 
 }

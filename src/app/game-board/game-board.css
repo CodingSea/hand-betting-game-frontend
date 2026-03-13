@@ -1,24 +1,172 @@
-h1
+root
 {
-    text-align: center;
-    font-size: 5em;
-    margin-top: 2em;
+    --primary-green: #2d5a27;
+    --accent-gold: #d4af37;
+    --tile-white: #fdfdfd;
+    --text-dark: #333;
+    --transition-speed: 0.3s;
 }
 
-.buttonsContainer
+body
 {
-    margin-top: 10em;
+    background-color: #f0f2f5;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-button
+#game-container
 {
-    display: block;
+    width: 90%;
+    max-width: 800px;
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     margin-left: auto;
     margin-right: auto;
-    margin-top: 2em;
-    padding: 1em;
-    font-weight: bold;
-    font-size: 1.5em;
 
-    width: 12em;
+}
+
+.game-header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+#username
+{
+    text-align: center;
+}
+
+.secondary-btn
+{
+    background: none;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition-speed);
+}
+
+.secondary-btn:hover
+{
+    background: #eee;
+}
+
+/* Game Board Logic */
+.deck-info
+{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.hand-display
+{
+    text-align: center;
+    background: var(--primary-green);
+    padding: 2rem;
+    border-radius: 12px;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.tiles-row
+{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 1rem;
+}
+
+.mahjong-tile
+{
+    font-size: 4rem;
+    background: var(--tile-white);
+    color: var(--text-dark);
+    width: 80px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    box-shadow: 4px 4px 0px #ccc, 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.mahjong-tile:hover
+{
+    transform: translateY(-5px);
+}
+
+.betting-actions
+{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.btn-group
+{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.bet-btn
+{
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.2s;
+}
+
+.higher
+{
+    background-color: #4CAF50;
+    color: white;
+}
+
+.lower
+{
+    background-color: #f44336;
+    color: white;
+}
+
+.bet-btn:active
+{
+    transform: scale(0.95);
+}
+
+.history-view
+{
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+
+.history-item
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px inset #f9f9f9;
+    font-size: 0.85rem;
+}
+
+.mini-tiles
+{
+    font-size: 1.2rem;
+    letter-spacing: 4px;
 }

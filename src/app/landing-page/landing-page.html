@@ -1,0 +1,8 @@
+<h1>Hand Betting Game</h1>
+
+<div class="buttonsContainer">
+    <input type="text" #username (input)="0" placeholder="Enter your username">
+
+    <button (click)="play()" [disabled]="!username.value">Play</button>
+    <button [routerLink]="[`/leaderboard`]">Leaderboard</button>
+</div>

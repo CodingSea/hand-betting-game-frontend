@@ -1,6 +1,42 @@
-<h1>Hand Betting Game</h1>
+<div id="game-container">
+    <header class="game-header">
+        <button id="exit-btn" class="secondary-btn" [routerLink]="[`/`]">← Exit Game</button>
+        <div class="score-display">
+            <span>Current Score: <strong id="current-score">0</strong></span>
+        </div>
+    </header>
 
-<div class="buttonsContainer">
-    <button [routerLink]="[`/game-over`]">Play</button>
-    <button [routerLink]="[`/leaderboard`]">Leaderboard</button>
+    <main class="game-board">
+        <h2 id="username">{{username}}</h2>
+        <section class="deck-info">
+            <div class="pile">Draw Pile: <span id="draw-count">18</span></div>
+            <div class="pile">Discard Pile: <span id="discard-count">0</span></div>
+        </section>
+
+        <section class="hand-display">
+            <h2 class="hand-value">Hand Value: <span id="total-value">0</span></h2>
+            <div id="tiles-container" class="tiles-row">
+                <div class="mahjong-tile">🀇</div>
+                <div class="mahjong-tile">🀄</div>
+            </div>
+        </section>
+
+        <section class="betting-actions">
+            <p>Will the next hand be higher or lower?</p>
+            <div class="btn-group">
+                <button class="bet-btn lower">↓ Bet Lower</button>
+                <button class="bet-btn higher">Bet Higher ↑</button>
+            </div>
+        </section>
+    </main>
+
+    <aside class="history-view">
+        <h3>Previous Hands</h3>
+        <div id="history-list">
+            <div class="history-item">
+                <div class="mini-tiles">🀐 🀅</div>
+                <span>Value: 14</span>
+            </div>
+        </div>
+    </aside>
 </div>
