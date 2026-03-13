@@ -1,1 +1,11 @@
 <p>leaderboard works!</p>
+
+<ul>
+    @for (player of players; track $index)
+    {
+    <li>
+        <h3>name:{{ player.username }} | Score:{{player.score}}</h3>
+    </li>
+    <hr>
+    }
+</ul>
