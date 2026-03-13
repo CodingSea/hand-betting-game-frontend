@@ -2,7 +2,7 @@
     <header class="game-header">
         <button id="exit-btn" class="secondary-btn" [routerLink]="[`/`]">← Exit Game</button>
         <div class="score-display">
-            <span>Current Score: <strong id="current-score">0</strong></span>
+            <span>Current Score: <strong id="current-score">{{handValue}}</strong></span>
         </div>
     </header>
 
@@ -24,8 +24,8 @@
         <section class="betting-actions">
             <p>Will the next hand be higher or lower?</p>
             <div class="btn-group">
-                <button class="bet-btn lower">↓ Bet Lower</button>
-                <button class="bet-btn higher">Bet Higher ↑</button>
+                <button (click)='placeBet("Lower")' class="bet-btn lower">↓ Bet Lower</button>
+                <button (click)='placeBet("Higher")' class="bet-btn higher">Bet Higher ↑</button>
             </div>
         </section>
     </main>

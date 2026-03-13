@@ -1,6 +1,6 @@
 export interface Tile
 {
-    type: 'number' | 'dragon' | 'wind';
+    type: "number" | "dragon" | "wind";
     value: string;
     display: string;
 }
