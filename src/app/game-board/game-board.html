@@ -9,8 +9,8 @@
     <main class="game-board">
         <h2 id="username">{{username}}</h2>
         <section class="deck-info">
-            <div class="pile">Draw Pile: <span id="draw-count">18</span></div>
-            <div class="pile">Discard Pile: <span id="discard-count">0</span></div>
+            <div class="pile">Draw Pile: <span id="draw-count">{{drawPile.length}}</span></div>
+            <div class="pile">Discard Pile: <span id="discard-count">{{discardPile.length}}</span></div>
         </section>
 
         <section class="hand-display">

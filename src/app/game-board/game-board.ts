@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { defaultTiles, Tile } from '../../Tile';
 
 @Component({
   selector: 'app-game-board',
@@ -9,12 +10,15 @@ import { RouterLink } from '@angular/router';
 })
 export class GameBoard implements OnInit
 {
+  drawPile: Tile[] = [];
+  discardPile: Tile[] = [];
   username: string = "";
 
   ngOnInit(): void
   {
     this.username = sessionStorage.getItem("username")!;
-    console.log(this.username);
+
+    this.drawPile = defaultTiles;
   }
 
 }
