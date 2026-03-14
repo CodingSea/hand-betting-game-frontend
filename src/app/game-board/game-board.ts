@@ -22,13 +22,17 @@ export class GameBoard implements OnInit
 
   bet: "Higher" | "Lower" | undefined;
 
+  reshuffleCount: number = 0;
+  shuffleLimit: number = 3;
+
   constructor(private router: Router) {}
 
   ngOnInit(): void
   {
     this.username = sessionStorage.getItem("username")!;
+    this.reshuffleCount = 0;
 
-    this.drawPile = defaultTiles;
+    this.drawPile = [...defaultTiles];
     // this.drawPile = makeASet(this.drawPile, 4);
 
     this.drawTile();
@@ -43,7 +47,11 @@ export class GameBoard implements OnInit
 
   drawTile()
   {
-    if(this.drawPile.length <= 0) return;
+    if(this.drawPile.length <= 0)
+    {
+      this.reshuffle();
+      return;
+    }
 
     const i = Math.floor(Math.random() * this.drawPile.length);
     
@@ -125,6 +133,7 @@ export class GameBoard implements OnInit
   {
     if(this.tileHistory.length < 2) return;
 
+    // Check score of tiles on hand
     const val = this.tileHistory.at(-1)!.currentValue + this.tileHistory.at(-2)!.currentValue;
 
     if(val == 0 || val == 10)
@@ -133,6 +142,25 @@ export class GameBoard implements OnInit
       
       this.router.navigate([`/game-over`]);
     }
+
+    // Check the number of shuffles
+    if(this.reshuffleCount === this.shuffleLimit)
+    {
+      sessionStorage.setItem("score", this.score.toString());
+      
+      this.router.navigate([`/game-over`]);
+    }
+  }
+
+  reshuffle()
+  {
+    this.reshuffleCount++;
+    const newTiles: Tile[] = [...this.discardPile, ...defaultTiles];
+    this.discardPile = [];
+
+    this.drawPile = newTiles;
+
+    this.drawTile();
   }
 
 }
