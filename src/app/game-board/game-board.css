@@ -91,7 +91,7 @@ body
 {
     font-size: 4rem;
     background: var(--tile-white);
-    color: var(--text-dark);
+    color: black;
     width: 80px;
     height: 110px;
     display: flex;
@@ -100,6 +100,22 @@ body
     border-radius: 6px;
     box-shadow: 4px 4px 0px #ccc, 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
+}
+
+.tile-text
+{
+    color: black;
+    font-size: 1em;
+}
+
+.current-mini-tile
+{
+    font-size: 1.2em;
+}
+
+.old-mini-tile
+{
+    font-size: 0.9em;
 }
 
 .mahjong-tile:hover

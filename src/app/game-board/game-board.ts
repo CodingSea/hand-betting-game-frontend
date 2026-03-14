@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { defaultTiles, makeASet, Tile } from '../../Tile';
+import { defaultTiles, Tile } from '../../Tile';
 
 @Component({
   selector: 'app-game-board',
@@ -15,7 +15,8 @@ export class GameBoard implements OnInit
   username: string = "";
   score: number = 0;
 
-  handValue: number | undefined;
+  currentTileValue: number | undefined;
+  currentTile: Tile | undefined;
 
   tileHistory: Tile[] = [];
 
@@ -27,7 +28,7 @@ export class GameBoard implements OnInit
     this.username = sessionStorage.getItem("username")!;
 
     this.drawPile = defaultTiles;
-    this.drawPile = makeASet(this.drawPile, 4);
+    // this.drawPile = makeASet(this.drawPile, 4);
 
     this.drawTile();
   }
@@ -47,35 +48,35 @@ export class GameBoard implements OnInit
     
     if(this.drawPile[i].type != "number")
     {
-      if(this.handValue == undefined)
+      if(this.currentTileValue == undefined)
       {
-        this.handValue = 5;
+        this.currentTileValue = 5;
       }
       else
       {
         if(this.bet == "Higher")
         {
-          if(this.handValue < 5)
+          if(this.currentTileValue < 5)
           {
-            this.handValue = 6;
+            this.currentTileValue = 6;
             this.score += 1;
           }
-          else if(this.handValue > 5)
+          else if(this.currentTileValue > 5)
           {
-            this.handValue = 4;
+            this.currentTileValue = 4;
             this.score -= 1;
           }
         }
         else
         {
-          if(this.handValue > 5)
+          if(this.currentTileValue > 5)
           {
-            this.handValue = 6;
+            this.currentTileValue = 6;
             this.score += 1;
           }
-          else if(this.handValue < 5)
+          else if(this.currentTileValue < 5)
           {
-            this.handValue = 4;
+            this.currentTileValue = 4;
             this.score -= 1;
           }
         }
@@ -87,32 +88,33 @@ export class GameBoard implements OnInit
 
       if(this.bet == "Higher")
       {
-        if(this.handValue! < val)
+        if(this.currentTileValue! < val)
         {
           this.score += 1;
         }
-        else if(this.handValue! > val)
+        else if(this.currentTileValue! > val)
         {
           this.score -= 1;
         }
       }
       else if (this.bet == "Lower")
       {
-        if(this.handValue! < val)
+        if(this.currentTileValue! < val)
         {
           this.score -= 1;
         }
-        else if(this.handValue! > val)
+        else if(this.currentTileValue! > val)
         {
           this.score += 1;
         }
       }
 
-      this.handValue = Number(this.drawPile[i].value);
+      this.currentTileValue = Number(this.drawPile[i].value);
       
     }
 
-    console.log(this.drawPile[i]);
+    this.currentTile = this.drawPile[i];
+    this.tileHistory.push(this.currentTile);
     this.discardPile.push(this.drawPile[i]);
     this.drawPile.splice(i, 1);
   }
