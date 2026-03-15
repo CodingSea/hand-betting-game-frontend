@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild, viewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
@@ -9,11 +9,20 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })
-export class LandingPage
+export class LandingPage implements OnInit
 {
-  @ViewChild("username") username!: ElementRef<HTMLInputElement>;
+  @ViewChild("username", { static: true }) username!: ElementRef<HTMLInputElement>;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
+
+  ngOnInit(): void
+  {
+    const val = sessionStorage.getItem("username");
+    if (val && this.username)
+    {
+      this.username.nativeElement.value = val;
+    }
+  }
 
   play()
   {
