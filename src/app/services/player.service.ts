@@ -14,4 +14,14 @@ export class PlayerService
     return this.http.get<Player[]>(this.apiUrl)
   }
 
+  addNewScore(usernameInput: string, scoreInput: number)
+  {
+    const player: Player = {
+      username: usernameInput,
+      score: scoreInput
+    }
+
+    return this.http.post(this.apiUrl + "/new", player);
+  }
+
 }
