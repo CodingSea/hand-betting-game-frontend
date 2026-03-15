@@ -1,0 +1,64 @@
+/* Container styling */
+.game-over-container
+{
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    padding: 2em;
+    text-align: center;
+    border-radius: 8px;
+    height: 100%;
+}
+
+.game-title
+{
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    margin-bottom: 0;
+    color: #e94560;
+    /* A vibrant 'Game Over' Red */
+    font-weight: 800;
+}
+
+/* Score Section */
+.score-section
+{
+    padding: 4em 2em;
+}
+
+.label
+{
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    color: #95a5a6;
+    margin: 0;
+}
+
+.score-value
+{
+    font-size: 4rem;
+    margin: 0;
+    color: #f1c40f;
+}
+
+/* Buttons */
+.actions
+{
+    display: flex;
+    flex-direction: column;
+    /* Stacked buttons look great on mobile/small popups */
+    gap: 12px;
+    padding-top: 1em;
+}
+
+.actions button
+{
+    width: 100%;
+    /* Make buttons full width for easier clicking */
+    height: 45px;
+    font-weight: bold;
+}
+
+::ng-deep .mat-mdc-dialog-content
+{
+    overflow: hidden;
+}

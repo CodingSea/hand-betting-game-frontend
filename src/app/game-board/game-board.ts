@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { defaultTiles, Tile } from '../../Tile';
+import { GameOver } from '../game-over/game-over';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-game-board',
@@ -27,7 +29,7 @@ export class GameBoard implements OnInit
 
   animateTile: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void
   {
@@ -71,14 +73,16 @@ export class GameBoard implements OnInit
         {
           if (this.currentTileValue < 5)
           {
-            this.currentTileValue = 6;
+            this.drawPile[i].currentValue += 1;
             this.score += 1;
           }
           else if (this.currentTileValue > 5)
           {
-            this.currentTileValue = 4;
+            this.drawPile[i].currentValue -= 1;
             this.score -= 1;
           }
+
+          this.currentTileValue = this.drawPile[i].currentValue;
         }
         else
         {
@@ -149,7 +153,8 @@ export class GameBoard implements OnInit
     {
       sessionStorage.setItem("score", this.score.toString());
 
-      this.router.navigate([`/game-over`]);
+      // this.router.navigate([`/game-over`]);
+      this.gameOverPopup();
     }
 
     // Check the number of shuffles
@@ -157,8 +162,22 @@ export class GameBoard implements OnInit
     {
       sessionStorage.setItem("score", this.score.toString());
 
-      this.router.navigate([`/game-over`]);
+      // this.router.navigate([`/game-over`]);
+      this.gameOverPopup();
     }
+  }
+
+  gameOverPopup()
+  {
+    this.dialog.open(GameOver, {
+      disableClose: true,
+      width: '50em',
+      height: '30em',
+      data: {
+        score: this.score,
+        username: this.username
+      }
+    });
   }
 
   reshuffle()
