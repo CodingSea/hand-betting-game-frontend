@@ -12,33 +12,33 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class GameBoard implements OnInit
 {
+  // tiles info
   drawPile: Tile[] = [];
   discardPile: Tile[] = [];
   username: string = "";
   score: number = 0;
-
-  currentTileValue: number | undefined;
-  currentTile: Tile | undefined;
-
   tileHistory: Tile[] = [];
 
+  // current player info
+  currentTileValue: number | undefined;
+  currentTile: Tile | undefined;
   bet: "Higher" | "Lower" | undefined;
 
+  // behind the scenes info
   reshuffleCount: number = 0;
   shuffleLimit: number = 3;
-
   animateTile: boolean = false;
 
   constructor(private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void
   {
+    // get username from session storage
     this.username = sessionStorage.getItem("username")!;
+
+    // loads the information once the board-game page loads
     this.reshuffleCount = 0;
-
     this.drawPile = [...defaultTiles];
-    // this.drawPile = makeASet(this.drawPile, 4);
-
     this.drawTile();
   }
 
@@ -58,7 +58,6 @@ export class GameBoard implements OnInit
     }
 
     const i = Math.floor(Math.random() * this.drawPile.length);
-
     this.animateTile = true;
 
     if (this.drawPile[i].type != "number")
@@ -126,8 +125,8 @@ export class GameBoard implements OnInit
 
     }
 
-    this.currentTileValue = this.drawPile[i].currentValue;
     this.currentTile = this.drawPile[i];
+    this.currentTileValue = this.currentTile.currentValue;
     this.tileHistory.push(this.currentTile);
     this.discardPile.push(this.currentTile);
     this.drawPile.splice(i, 1);
@@ -145,12 +144,9 @@ export class GameBoard implements OnInit
 
     // Check score of tiles on hand
     const val = this.tileHistory.at(-1)!.currentValue + this.tileHistory.at(-2)!.currentValue;
-
     if (val == 0 || val == 10)
     {
       sessionStorage.setItem("score", this.score.toString());
-
-      // this.router.navigate([`/game-over`]);
       this.gameOverPopup();
     }
 
@@ -159,11 +155,11 @@ export class GameBoard implements OnInit
     {
       sessionStorage.setItem("score", this.score.toString());
 
-      // this.router.navigate([`/game-over`]);
       this.gameOverPopup();
     }
   }
 
+  // opend game over popup page
   gameOverPopup()
   {
     this.dialog.open(GameOver, {
@@ -177,6 +173,7 @@ export class GameBoard implements OnInit
     });
   }
 
+  // returns the discarded tiles into the draw pile with a new set of tiles included
   reshuffle()
   {
     this.reshuffleCount++;
