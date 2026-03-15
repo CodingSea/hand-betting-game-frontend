@@ -25,7 +25,9 @@ export class GameBoard implements OnInit
   reshuffleCount: number = 0;
   shuffleLimit: number = 3;
 
-  constructor(private router: Router) {}
+  animateTile: boolean = false;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void
   {
@@ -47,30 +49,32 @@ export class GameBoard implements OnInit
 
   drawTile()
   {
-    if(this.drawPile.length <= 0)
+    if (this.drawPile.length <= 0)
     {
       this.reshuffle();
       return;
     }
 
     const i = Math.floor(Math.random() * this.drawPile.length);
-    
-    if(this.drawPile[i].type != "number")
+
+    this.animateTile = true;
+
+    if (this.drawPile[i].type != "number")
     {
-      if(this.currentTileValue == undefined)
+      if (this.currentTileValue == undefined)
       {
         this.currentTileValue = 5;
       }
       else
       {
-        if(this.bet == "Higher")
+        if (this.bet == "Higher")
         {
-          if(this.currentTileValue < 5)
+          if (this.currentTileValue < 5)
           {
             this.currentTileValue = 6;
             this.score += 1;
           }
-          else if(this.currentTileValue > 5)
+          else if (this.currentTileValue > 5)
           {
             this.currentTileValue = 4;
             this.score -= 1;
@@ -78,12 +82,12 @@ export class GameBoard implements OnInit
         }
         else
         {
-          if(this.currentTileValue > 5)
+          if (this.currentTileValue > 5)
           {
             this.currentTileValue = 6;
             this.score += 1;
           }
-          else if(this.currentTileValue < 5)
+          else if (this.currentTileValue < 5)
           {
             this.currentTileValue = 4;
             this.score -= 1;
@@ -95,31 +99,31 @@ export class GameBoard implements OnInit
     {
       const val = Number(this.drawPile[i].value);
 
-      if(this.bet == "Higher")
+      if (this.bet == "Higher")
       {
-        if(this.currentTileValue! < val)
+        if (this.currentTileValue! < val)
         {
           this.score += 1;
         }
-        else if(this.currentTileValue! > val)
+        else if (this.currentTileValue! > val)
         {
           this.score -= 1;
         }
       }
       else if (this.bet == "Lower")
       {
-        if(this.currentTileValue! < val)
+        if (this.currentTileValue! < val)
         {
           this.score -= 1;
         }
-        else if(this.currentTileValue! > val)
+        else if (this.currentTileValue! > val)
         {
           this.score += 1;
         }
       }
 
       this.currentTileValue = Number(this.drawPile[i].value);
-      
+
     }
 
     this.currentTile = this.drawPile[i];
@@ -127,27 +131,32 @@ export class GameBoard implements OnInit
     this.discardPile.push(this.currentTile);
     this.drawPile.splice(i, 1);
     this.checkGameOver();
+
+    setTimeout(() =>
+    {
+      this.animateTile = false;
+    }, 500);
   }
 
   checkGameOver()
   {
-    if(this.tileHistory.length < 2) return;
+    if (this.tileHistory.length < 2) return;
 
     // Check score of tiles on hand
     const val = this.tileHistory.at(-1)!.currentValue + this.tileHistory.at(-2)!.currentValue;
 
-    if(val == 0 || val == 10)
+    if (val == 0 || val == 10)
     {
       sessionStorage.setItem("score", this.score.toString());
-      
+
       this.router.navigate([`/game-over`]);
     }
 
     // Check the number of shuffles
-    if(this.reshuffleCount === this.shuffleLimit)
+    if (this.reshuffleCount === this.shuffleLimit)
     {
       sessionStorage.setItem("score", this.score.toString());
-      
+
       this.router.navigate([`/game-over`]);
     }
   }

@@ -186,3 +186,60 @@ body
     font-size: 1.2rem;
     letter-spacing: 4px;
 }
+
+/* Animation Style */
+
+#tiles-container
+{
+    position: relative;
+}
+
+/* animated tile starts in the RIGHT tile slot */
+.animated-tile
+{
+    position: absolute;
+
+    /* position exactly over the right tile */
+    top: 0;
+    left: calc(50% + 7.5px);
+
+    width: 80px;
+    height: 110px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation: reveal-move 0.6s ease forwards;
+}
+
+/* spawn → scale → move left */
+@keyframes reveal-move
+{
+    0%
+    {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    20%
+    {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    40%
+    {
+        transform: scale(1);
+    }
+
+    60%
+    {
+        transform: scale(1);
+    }
+
+    100%
+    {
+        transform: translateX(-95px) scale(1);
+    }
+}

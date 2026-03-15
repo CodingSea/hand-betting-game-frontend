@@ -2,13 +2,14 @@
     <header class="game-header">
         <button id="exit-btn" class="secondary-btn" [routerLink]="[`/`]">← Exit Game</button>
         <div class="score-display">
-            @if (tileHistory.length >= 2) 
+            @if (tileHistory.length >= 2)
             {
-                <span>Current Hand Value: <strong id="current-score">{{tileHistory.at(-1)!.currentValue + tileHistory.at(-2)!.currentValue}}</strong></span>
+            <span>Current Hand Value: <strong id="current-score">{{tileHistory.at(-1)!.currentValue +
+                    tileHistory.at(-2)!.currentValue}}</strong></span>
             }
-            @else 
+            @else
             {
-                <span>Current Hand Value: <strong id="current-score">{{tileHistory.at(-1)?.currentValue}}</strong></span>
+            <span>Current Hand Value: <strong id="current-score">{{tileHistory.at(-1)?.currentValue}}</strong></span>
             }
         </div>
     </header>
@@ -23,16 +24,54 @@
         <section class="hand-display">
             <h2 class="hand-value">Hand Value: <span id="total-value">0</span></h2>
             <div id="tiles-container" class="tiles-row">
-                <table>
+                <table class="tile-table">
                     <tr>
-                        <th><div class="mahjong-tile">🀇</div></th>
-                        <th><div class="mahjong-tile">{{currentTile?.display}}</div></th>
+                        <!-- LEFT TILE -->
+                        <th>
+                            <div class="mahjong-tile">
+                                @if (animateTile)
+                                {
+                                {{ tileHistory.at(-2)?.display || "" }}
+                                }
+                                @else
+                                {
+                                {{ tileHistory.at(-1)?.display || "" }}
+                                }
+                            </div>
+                        </th>
+
+                        <!-- RIGHT TILE SLOT -->
+                        <th>
+                            <div class="mahjong-tile">
+                                
+                            </div>
+                        </th>
                     </tr>
+
                     <tr>
-                        <th><p class="tile-text">{{currentTile?.currentValue}}</p></th>
-                        <th><p class="tile-text">2</p></th>
+                        <!-- LEFT VALUE -->
+                        <th>
+                            <p class="tile-text">
+                                @if (animateTile)
+                                {
+                                {{ tileHistory.at(-2)?.currentValue || "" }}
+                                }
+                                @else
+                                {
+                                {{ tileHistory.at(-1)?.currentValue || "" }}
+                                }
+                            </p>
+                        </th>
                     </tr>
                 </table>
+
+                <!-- ANIMATED TILE -->
+                @if (animateTile)
+                {
+                <div class="mahjong-tile animated-tile">
+                    {{ tileHistory.at(-1)?.display }}
+                </div>
+                }
             </div>
         </section>
 
