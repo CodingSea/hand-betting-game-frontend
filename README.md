@@ -135,7 +135,7 @@ When the game ends, a **Score Summary screen** is displayed with the player's fi
 Clone the repository:
 
 ``` bash
-git clone https://github.com/your-username/hand-betting-game.git
+git clone https://github.com/CodingSea/hand-betting-game-frontend.git
 ```
 
 Install dependencies:
