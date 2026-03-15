@@ -1,1 +1,24 @@
-<p>game-over works!</p>
+<div class="game-over-container">
+    <h1 mat-dialog-title class="game-title">GAME OVER</h1>
+
+    <div mat-dialog-content class="score-section">
+        <p class="label">Final Score</p>
+        <br>
+        <h2 class="score-value">{{data.score}}</h2>
+    </div>
+
+    <div mat-dialog-actions align="center" class="actions">
+        <!-- mat-raised-button gives it depth; color="primary" makes it stand out -->
+        <button mat-stroked-button color="primary" (click)="saveScore()">
+            SAVE SCORE
+        </button>
+
+        <button mat-stroked-button (click)="tryAgain()">
+            TRY AGAIN
+        </button>
+
+        <button mat-stroked-button color="warn" (click)="exit()">
+            EXIT
+        </button>
+    </div>
+</div>

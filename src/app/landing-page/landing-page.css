@@ -1,36 +1,101 @@
+/* Centered flex container for the landing screen */
+:host
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+}
+
 h1
 {
     text-align: center;
-    font-size: 5em;
-    margin-top: 2em;
+    font-size: 4rem;
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2em;
 }
 
+/* White card container matching the game board style */
 .buttonsContainer
 {
-    width: 20em;
-    margin: auto;
-    margin-top: 10em;
-}
-
-button
-{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2em;
-    padding: 1em;
-    font-weight: bold;
-    font-size: 1.5em;
-
-    width: 100%;
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 input
 {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
     width: 100%;
-    height: 3em;
-    display: block;
+    height: 55px;
+    padding: 0 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input:focus
+{
+    outline: none;
+    border-color: #4CAF50;
+}
+
+button
+{
+    width: 100%;
+    height: 60px;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.1s, opacity 0.2s;
+}
+
+/* Specific styling for the play action */
+button:first-of-type
+{
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Specific styling for navigation actions */
+button:last-of-type
+{
+    background-color: white;
+    color: #333;
+    border: 2px solid #eee;
+}
+
+button:hover:not(:disabled)
+{
+    opacity: 0.9;
+}
+
+button:active:not(:disabled)
+{
+    transform: scale(0.98);
+}
+
+/* Visual state for disabled inputs */
+button:disabled
+{
+    background-color: #ccc;
+    cursor: not-allowed;
 }

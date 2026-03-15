@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from '../services/player.service';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-leaderboard',
-  imports: [HttpClientModule],
+  imports: [HttpClientModule, RouterLink],
   providers: [PlayerService],
   templateUrl: './leaderboard.html',
   styleUrl: './leaderboard.css',

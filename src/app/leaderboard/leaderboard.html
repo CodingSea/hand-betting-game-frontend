@@ -1,11 +1,19 @@
-<p>leaderboard works!</p>
+<h1>Leaderboard</h1>
 
-<ul>
-    @for (player of players; track $index)
-    {
-    <li>
-        <h3>name:{{ player.username }} | Score:{{player.score}}</h3>
-    </li>
-    <hr>
-    }
-</ul>
+<div class="leaderboard-container">
+    <ul>
+        <!-- Iterates through player data using the new Angular 17+ control flow -->
+        @for (player of players; track $index) {
+        <li>
+            <h3>
+                <span>{{ player.username }}</span>
+                <span class="score">{{ player.score }}</span>
+            </h3>
+        </li>
+        <hr>
+        }
+    </ul>
+</div>
+
+<!-- Navigation button to return to the home screen -->
+<button class="back-btn" [routerLink]="['/']">Back to Menu</button>
