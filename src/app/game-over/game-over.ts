@@ -25,15 +25,22 @@ export class GameOver implements OnInit
 
   }
 
-  saveScore()
+  async saveScore()
   {
-    this.playerService.addNewScore(this.data.username, this.data.score).subscribe({
-      next: (res) => console.log("added new player log", res),
-      error: (e) => console.log("error: ", e)
+    await this.playerService.addNewScore(this.data.username, this.data.score).subscribe({
+      next: (res) =>
+      {
+        console.log("added new player log", res);
+        this.dialogRef.close();
+        this.router.navigate([`/leaderboard`]);
+      },
+      error: (e) =>
+      {
+        console.log("error: ", e);
+        this.dialogRef.close();
+        this.router.navigate([`/`]);
+      }
     });
-
-    this.dialogRef.close();
-    this.router.navigate([`/leaderboard`]);
   }
 
   tryAgain()

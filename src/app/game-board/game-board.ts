@@ -71,29 +71,27 @@ export class GameBoard implements OnInit
       {
         if (this.bet == "Higher")
         {
-          if (this.currentTileValue < 5)
+          if (this.currentTileValue < this.drawPile[i].currentValue)
           {
             this.drawPile[i].currentValue += 1;
             this.score += 1;
           }
-          else if (this.currentTileValue > 5)
+          else if (this.currentTileValue > this.drawPile[i].currentValue)
           {
             this.drawPile[i].currentValue -= 1;
             this.score -= 1;
           }
-
-          this.currentTileValue = this.drawPile[i].currentValue;
         }
-        else
+        else if(this.bet == "Lower")
         {
-          if (this.currentTileValue > 5)
+          if (this.currentTileValue > this.drawPile[i].currentValue)
           {
-            this.currentTileValue = 6;
+            this.drawPile[i].currentValue += 1;
             this.score += 1;
           }
-          else if (this.currentTileValue < 5)
+          else if (this.currentTileValue < this.drawPile[i].currentValue)
           {
-            this.currentTileValue = 4;
+            this.drawPile[i].currentValue -= 1;
             this.score -= 1;
           }
         }
@@ -101,7 +99,7 @@ export class GameBoard implements OnInit
     }
     else
     {
-      const val = Number(this.drawPile[i].value);
+      const val = Number(this.drawPile[i].currentValue);
 
       if (this.bet == "Higher")
       {
@@ -126,10 +124,9 @@ export class GameBoard implements OnInit
         }
       }
 
-      this.currentTileValue = Number(this.drawPile[i].value);
-
     }
 
+    this.currentTileValue = this.drawPile[i].currentValue;
     this.currentTile = this.drawPile[i];
     this.tileHistory.push(this.currentTile);
     this.discardPile.push(this.currentTile);

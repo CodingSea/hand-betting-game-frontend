@@ -1,8 +1,16 @@
 <h1>Hand Betting Game</h1>
 
 <div class="buttonsContainer">
+    <!-- Local template variable #username used for button validation -->
     <input type="text" #username (input)="0" placeholder="Enter your username">
 
-    <button (click)="play()" [disabled]="!username.value">Play</button>
-    <button [routerLink]="[`/leaderboard`]">Leaderboard</button>
+    <!-- Primary action triggers the play method -->
+    <button (click)="play()" [disabled]="!username.value">
+        Play Game
+    </button>
+
+    <!-- Secondary action navigates to the leaderboard route -->
+    <button [routerLink]="['/leaderboard']">
+        Leaderboard
+    </button>
 </div>
