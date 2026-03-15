@@ -1,64 +1,93 @@
-/* Container styling */
+::ng-deep .mat-mdc-dialog-content
+{
+    overflow: hidden !important;
+    max-height: none !important;
+}
+
 .game-over-container
 {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: white;
-    padding: 2em;
+    background: #ffffff;
+    color: #333;
+    padding: 2.5rem;
     text-align: center;
-    border-radius: 8px;
-    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
 }
 
+/* Title Styling */
 .game-title
 {
-    font-size: 2.5rem;
-    letter-spacing: 4px;
-    margin-bottom: 0;
-    color: #e94560;
-    /* A vibrant 'Game Over' Red */
+    font-size: 1.8rem;
     font-weight: 800;
+    color: #333;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
 }
 
-/* Score Section */
 .score-section
 {
-    padding: 4em 2em;
+    padding: 2rem 0;
+    border-top: 1px solid #f0f2f5;
+    border-bottom: 1px solid #f0f2f5;
+    margin-bottom: 2rem;
 }
 
 .label
 {
     text-transform: uppercase;
-    font-size: 0.9rem;
-    color: #95a5a6;
-    margin: 0;
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 700;
+    margin-bottom: 8px;
 }
 
 .score-value
 {
-    font-size: 4rem;
+    font-size: 4.5rem;
+    font-weight: 800;
+    color: #333;
     margin: 0;
-    color: #f1c40f;
 }
 
-/* Buttons */
 .actions
 {
     display: flex;
     flex-direction: column;
-    /* Stacked buttons look great on mobile/small popups */
     gap: 12px;
-    padding-top: 1em;
 }
 
 .actions button
 {
     width: 100%;
-    /* Make buttons full width for easier clicking */
-    height: 45px;
+    height: 48px;
     font-weight: bold;
+    border-radius: 8px;
+    text-transform: uppercase;
 }
 
-::ng-deep .mat-mdc-dialog-content
+button[mat-stroked-button]:nth-child(2)
 {
-    overflow: hidden;
+    background-color: #4CAF50 !important;
+    color: white !important;
+    border: none !important;
+}
+
+button[color="warn"]
+{
+    background-color: #f44336 !important;
+    color: white !important;
+    border: none !important;
+}
+
+button[color="primary"]
+{
+    border-color: #ccc !important;
+    color: #333 !important;
+}
+
+/* Remove default Material padding gaps */
+::ng-deep .mat-mdc-dialog-actions
+{
+    padding: 0 !important;
 }

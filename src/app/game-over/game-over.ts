@@ -33,7 +33,7 @@ export class GameOver implements OnInit
     });
 
     this.dialogRef.close();
-    this.router.navigate([`/`]);
+    this.router.navigate([`/leaderboard`]);
   }
 
   tryAgain()

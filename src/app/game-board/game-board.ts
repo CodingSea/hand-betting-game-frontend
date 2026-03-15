@@ -172,7 +172,7 @@ export class GameBoard implements OnInit
     this.dialog.open(GameOver, {
       disableClose: true,
       width: '50em',
-      height: '30em',
+      height: '32em',
       data: {
         score: this.score,
         username: this.username
