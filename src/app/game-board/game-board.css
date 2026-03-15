@@ -201,7 +201,7 @@ body
 
     /* position exactly over the right tile */
     top: 0;
-    left: calc(50% + 7.5px);
+    left: calc(50%);
 
     width: 80px;
     height: 110px;
@@ -240,6 +240,6 @@ body
 
     100%
     {
-        transform: translateX(-95px) scale(1);
+        transform: translateX(-1.6em) scale(1);
     }
 }
